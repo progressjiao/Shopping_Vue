@@ -10,6 +10,11 @@ import './assets/css/global.css'
 import axios from 'axios'
 // 配置请求的跟路径
 axios.defaults.baseURL = 'http://timemeetyou.com:8889/api/private/v1'
+// 请求拦截器添加token
+axios.interceptors.request.use(config => {
+  config.headers.Authorization = window.sessionStorage.getItem('token');
+  return config
+})
 Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
